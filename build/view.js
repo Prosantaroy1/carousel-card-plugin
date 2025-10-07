@@ -187,7 +187,16 @@ const ThemeTwo = ({
     className: "themeTwo cardThemeWrapper"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_multi_carousel__WEBPACK_IMPORTED_MODULE_1__["default"], {
     responsive: responsive,
-    className: "carousel-card-section"
+    className: "carousel-card-section",
+    showDots: true,
+    infinite: true,
+    autoPlaySpeed: 2000,
+    keyBoardControl: true,
+    customTransition: "all .5",
+    transitionDuration: 500,
+    containerClass: "carousel-container",
+    dotListClass: "custom-dot-list-style",
+    itemClass: "carousel-item-padding-40-px"
   }, cardData.length > 0 && cardData.map((card, idx) => {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       key: idx,
@@ -574,6 +583,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "carousel-card-wrapper"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_Themes_ThemeOne__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      attributes
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_Themes_ThemeTwo__WEBPACK_IMPORTED_MODULE_5__["default"], {
       attributes
     }))));
     blockNameEl?.removeAttribute('data-attributes');

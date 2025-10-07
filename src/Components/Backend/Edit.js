@@ -18,7 +18,7 @@ const Edit = (props) => {
 
         <div className='carousel-card-wrapper'>
           <ThemeOne {...{ attributes, setAttributes }} />
-          {/* <ThemeTwo {...{ attributes, setAttributes }} /> */}
+          <ThemeTwo {...{ attributes, setAttributes }} />
         </div>
 
       </div>

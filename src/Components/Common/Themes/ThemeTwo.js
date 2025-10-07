@@ -27,7 +27,17 @@ const ThemeTwo = ({ attributes, setAttributes }) => {
 
     return (
         <div className='themeTwo cardThemeWrapper'>
-            <Carousel responsive={responsive} className='carousel-card-section'>
+            <Carousel responsive={responsive} className='carousel-card-section'
+                showDots={true}
+                infinite={true}
+                autoPlaySpeed={2000}
+                keyBoardControl={true}
+                customTransition="all .5"
+                transitionDuration={500}
+                containerClass="carousel-container"
+                dotListClass="custom-dot-list-style"
+                itemClass="carousel-item-padding-40-px"
+            >
                 {
                     cardData.length > 0 && cardData.map((card, idx) => {
                         return (

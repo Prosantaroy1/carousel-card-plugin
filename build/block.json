@@ -21,7 +21,7 @@
     },
     "theme": {
       "type": "string",
-      "default": "default"
+      "default": "themeOne"
     },
     "activeIndex": {
       "type": "number",

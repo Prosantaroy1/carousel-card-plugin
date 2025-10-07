@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			<div className='carousel-card-wrapper'>
 				<ThemeOne {...{ attributes }} />
-				{/* <ThemeTwo {...{ attributes }} /> */}
+				<ThemeTwo {...{ attributes }} />
 			</div>
 
 		</>);
