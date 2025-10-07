@@ -1,6 +1,8 @@
 import { createRoot } from 'react-dom/client';
 import './style.scss';
 import Style from './Components/Common/Style';
+import ThemeOne from './Components/Common/Themes/ThemeOne';
+import ThemeTwo from './Components/Common/Themes/ThemeTwo';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,12 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	blockNameEls.forEach(blockNameEl => {
 		const attributes = JSON.parse(blockNameEl.dataset.attributes);
 
-
 		createRoot(blockNameEl).render(<>
 			<Style attributes={attributes} id={blockNameEl.id} />
 
-			<div>
-				<h4>view Part</h4>
+			<div className='carousel-card-wrapper'>
+				<ThemeOne {...{ attributes }} />
+				{/* <ThemeTwo {...{ attributes }} /> */}
 			</div>
 
 		</>);

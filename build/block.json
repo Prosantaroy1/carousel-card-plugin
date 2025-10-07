@@ -7,7 +7,7 @@
   "category": "widgets",
   "description": "Short description of the Carousel Card",
   "keywords": [
-    "carousel-card"
+    "Carousel Card"
   ],
   "textdomain": "carousel-card",
   "attributes": {
@@ -15,9 +15,72 @@
       "type": "string",
       "default": "center"
     },
-    "purposeType": {
+    "align": {
+      "type": "string",
+      "default": "wide"
+    },
+    "theme": {
       "type": "string",
       "default": "default"
+    },
+    "activeIndex": {
+      "type": "number",
+      "default": 0
+    },
+    "cardData": {
+      "type": "array",
+      "default": [
+        {
+          "id": 1,
+          "title": "Modern Web Development",
+          "image": "https://i.ibb.co.com/C5f4pHnN/Add-a-subheading-13.png",
+          "description": "সর্বশেষ প্রযুক্তি দিয়ে দ্রুত, নিরাপদ ও রেসপনসিভ ওয়েবসাইট তৈরি।",
+          "button": {
+            "text": "learn More",
+            "url": "#"
+          }
+        },
+        {
+          "id": 2,
+          "title": "JavaScript Frameworks",
+          "image": "https://i.ibb.co.com/C5f4pHnN/Add-a-subheading-13.png",
+          "description": "React, Vue ও Next.js এর মাধ্যমে ইন্টার‌্যাক্টিভ ওয়েব অ্যাপ্লিকেশন ডেভেলপমেন্ট।",
+          "button": {
+            "text": "learn More",
+            "url": "#"
+          }
+        },
+        {
+          "id": 3,
+          "title": "Backend Technologies",
+          "image": "https://i.ibb.co.com/C5f4pHnN/Add-a-subheading-13.png",
+          "description": "Node.js, Express ও PHP ব্যবহার করে শক্তিশালী সার্ভার-সাইড লজিক নির্মাণ।",
+          "button": {
+            "text": "learn More",
+            "url": "#"
+          }
+        },
+        {
+          "id": 4,
+          "title": "API Integration",
+          "image": "https://i.ibb.co.com/C5f4pHnN/Add-a-subheading-13.png",
+          "description": "RESTful ও GraphQL API ইন্টিগ্রেশনের মাধ্যমে ডাইনামিক ডেটা সংযোগ।",
+          "button": {
+            "text": "learn More",
+            "url": "#"
+          }
+        },
+        {
+          "id": 5,
+          "title": "UI/UX Design",
+          "image": "https://i.ibb.co.com/C5f4pHnN/Add-a-subheading-13.png",
+          "description": "আকর্ষণীয় ও ব্যবহারবান্ধব ইন্টারফেস ডিজাইন — ব্যবহারকারীর অভিজ্ঞতা উন্নত করে।",
+          "button": {
+            "text": "learn More",
+            "url": "#"
+          }
+        }
+      ]
     }
   },
   "supports": {
