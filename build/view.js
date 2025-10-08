@@ -127,6 +127,58 @@ const ThemeOne = ({
 
 /***/ }),
 
+/***/ "./src/Components/Common/Themes/ThemeSwitch.js":
+/*!*****************************************************!*\
+  !*** ./src/Components/Common/Themes/ThemeSwitch.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ThemeSwitch: () => (/* binding */ ThemeSwitch)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ThemeOne__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ThemeOne */ "./src/Components/Common/Themes/ThemeOne.js");
+/* harmony import */ var _ThemeTwo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ThemeTwo */ "./src/Components/Common/Themes/ThemeTwo.js");
+
+
+
+const ThemeSwitch = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    theme = "themeOne"
+  } = attributes;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(ThemeChange, {
+    theme: theme,
+    attributes,
+    setAttributes
+  });
+};
+const ThemeChange = ({
+  theme,
+  attributes,
+  setAttributes
+}) => {
+  switch (theme) {
+    case 'themeTwo':
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ThemeTwo__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        attributes,
+        setAttributes
+      });
+    default:
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ThemeOne__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        attributes,
+        setAttributes
+      });
+  }
+};
+
+/***/ }),
+
 /***/ "./src/Components/Common/Themes/ThemeTwo.js":
 /*!**************************************************!*\
   !*** ./src/Components/Common/Themes/ThemeTwo.js ***!
@@ -565,9 +617,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var _Components_Common_Style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Common/Style */ "./src/Components/Common/Style.js");
-/* harmony import */ var _Components_Common_Themes_ThemeOne__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Components/Common/Themes/ThemeOne */ "./src/Components/Common/Themes/ThemeOne.js");
-/* harmony import */ var _Components_Common_Themes_ThemeTwo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Common/Themes/ThemeTwo */ "./src/Components/Common/Themes/ThemeTwo.js");
-
+/* harmony import */ var _Components_Common_Themes_ThemeSwitch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Components/Common/Themes/ThemeSwitch */ "./src/Components/Common/Themes/ThemeSwitch.js");
 
 
 
@@ -582,9 +632,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: blockNameEl.id
     }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "carousel-card-wrapper"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_Themes_ThemeOne__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      attributes
-    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_Themes_ThemeTwo__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_Themes_ThemeSwitch__WEBPACK_IMPORTED_MODULE_4__.ThemeSwitch, {
       attributes
     }))));
     blockNameEl?.removeAttribute('data-attributes');

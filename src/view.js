@@ -1,8 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import './style.scss';
 import Style from './Components/Common/Style';
-import ThemeOne from './Components/Common/Themes/ThemeOne';
-import ThemeTwo from './Components/Common/Themes/ThemeTwo';
+import { ThemeSwitch } from './Components/Common/Themes/ThemeSwitch';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,8 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			<Style attributes={attributes} id={blockNameEl.id} />
 
 			<div className='carousel-card-wrapper'>
-				<ThemeOne {...{ attributes }} />
-				<ThemeTwo {...{ attributes }} />
+				<ThemeSwitch {...{ attributes }} />
 			</div>
 
 		</>);

@@ -1,7 +1,7 @@
 import { __ } from "@wordpress/i18n";
 import { PanelBody, SelectControl } from "@wordpress/components";
 import { themeOptions } from "../../../../utils/options";
-import { updateData } from "../../../../utils/functions";
+import { themeSwitch, updateData } from "../../../../utils/functions";
 
 
 const General = ({ attributes, setAttributes }) => {
@@ -19,10 +19,8 @@ const General = ({ attributes, setAttributes }) => {
         labelPosition="left"
         value={theme}
         options={themeOptions}
-        onChange={(v) => console.log(v)}
+        onChange={(v) => setAttributes(themeSwitch(v, attributes))}
       />
-
-
 
 
     </PanelBody>

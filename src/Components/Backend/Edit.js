@@ -2,8 +2,7 @@ import { useBlockProps } from "@wordpress/block-editor";
 import Settings from "./Settings/Settings";
 import Style from "../Common/Style";
 import { withSelect } from "@wordpress/data";
-import ThemeOne from '../Common/Themes/ThemeOne';
-import ThemeTwo from '../Common/Themes/ThemeTwo';
+import { ThemeSwitch } from '../Common/Themes/ThemeSwitch';
 
 
 const Edit = (props) => {
@@ -17,8 +16,7 @@ const Edit = (props) => {
         <Style attributes={attributes} id={`block-${clientId}`} device={device} />
 
         <div className='carousel-card-wrapper'>
-          <ThemeOne {...{ attributes, setAttributes }} />
-          <ThemeTwo {...{ attributes, setAttributes }} />
+          <ThemeSwitch {...{ attributes, setAttributes }} />
         </div>
 
       </div>
