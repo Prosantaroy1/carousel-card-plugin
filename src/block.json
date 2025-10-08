@@ -81,6 +81,138 @@
 					}
 				}
 			]
+		},
+		"Styles": {
+			"type": "object",
+			"default": {
+				"container": {
+					"bg": {
+						"color": "#fff"
+					},
+					"card": {
+						"height": ""
+					}
+				},
+				"cardBody": {
+					"title": {
+						"typo": {
+							"fontWeight": 600,
+							"fontSize": {
+								"desktop": 24,
+								"tablet": 16,
+								"mobile": 12
+							},
+							"lineHeight": 1.5,
+							"fontFamily": "Montserrat, sans-serif"
+						},
+						"colors": {
+							"color": "#1a202c",
+							"bg": ""
+						},
+						"padding": {
+							"desktop": {
+								"top": "0px",
+								"left": "0px",
+								"bottom": "0px",
+								"right": "0px"
+							},
+							"tablet": {
+								"top": "0px",
+								"left": "0px",
+								"bottom": "0px",
+								"right": "0px"
+							},
+							"mobile": {
+								"top": "0px",
+								"left": "0px",
+								"bottom": "0px",
+								"right": "0px"
+							}
+						}
+					},
+					"description": {
+						"typo": {
+							"fontWeight": 400,
+							"fontSize": {
+								"desktop": 16,
+								"tablet": 14,
+								"mobile": 12
+							},
+							"lineHeight": 1.5,
+							"fontFamily": "Montserrat, sans-serif"
+						},
+						"colors": {
+							"color": "#1a202c",
+							"bg": ""
+						},
+						"padding": {
+							"desktop": {
+								"top": "0px",
+								"left": "0px",
+								"bottom": "0px",
+								"right": "0px"
+							},
+							"tablet": {
+								"top": "0px",
+								"left": "0px",
+								"bottom": "0px",
+								"right": "0px"
+							},
+							"mobile": {
+								"top": "0px",
+								"left": "0px",
+								"bottom": "0px",
+								"right": "0px"
+							}
+						}
+					},
+					"button": {
+						"typo": {
+							"fontWeight": 600,
+							"fontSize": {
+								"desktop": 14,
+								"tablet": 12,
+								"mobile": 10
+							},
+							"lineHeight": 1.5,
+							"fontFamily": "Montserrat, sans-serif"
+						},
+						"colors": {
+							"color": "#fff",
+							"bg": "#007bff"
+						},
+						"padding": {
+							"desktop": {
+								"top": "10px",
+								"left": "20px",
+								"bottom": "10px",
+								"right": "20px"
+							},
+							"tablet": {
+								"top": "10px",
+								"left": "20px",
+								"bottom": "10px",
+								"right": "20px"
+							},
+							"mobile": {
+								"top": "10px",
+								"left": "20px",
+								"bottom": "10px",
+								"right": "20px"
+							}
+						}
+					}
+				}
+			}
+		},
+		"column": {
+			"type": "object",
+			"default": {
+				"desktop": 3,
+				"tablet": 2,
+				"mobile": 1,
+				"gap": "16px"
+			}
 		}
 	},
 	"supports": {

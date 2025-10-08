@@ -12,6 +12,13 @@ $primaryColor: #4527a4;
 		box-sizing: border-box;
 	}
 
+	.react-multiple-carousel__arrow {
+		background: #111211;
+		min-width: 48px;
+		min-height: 48px;
+	}
+
+
 
 	.carousel-card-wrapper {
 		.themeOne {
@@ -94,7 +101,6 @@ $primaryColor: #4527a4;
 					display: flex;
 					flex-direction: row;
 					align-items: center;
-
 					justify-content: flex-start;
 					background: #fff;
 					border-radius: 12px;

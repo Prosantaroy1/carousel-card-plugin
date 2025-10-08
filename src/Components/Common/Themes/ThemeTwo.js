@@ -7,9 +7,8 @@ const ThemeTwo = ({ attributes, setAttributes }) => {
 
     const responsive = {
         superLargeDesktop: {
-            // the naming can be any, depends on you.
             breakpoint: { max: 4000, min: 3000 },
-            items: 3
+            items: 4
         },
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
@@ -17,7 +16,7 @@ const ThemeTwo = ({ attributes, setAttributes }) => {
         },
         tablet: {
             breakpoint: { max: 1024, min: 464 },
-            items: 1
+            items: 2
         },
         mobile: {
             breakpoint: { max: 464, min: 0 },
@@ -41,13 +40,13 @@ const ThemeTwo = ({ attributes, setAttributes }) => {
                 {
                     cardData.length > 0 && cardData.map((card, idx) => {
                         return (
-                            <div key={idx} className="card-row">
-                                <div className="card-2">
+                            <div key={idx} className="card-row" onClick={() => setAttributes({ activeIndex: idx })}>
+                                <div className="card card-2">
                                     <img src={card.image} alt={card.title} className="card-image" />
-                                    <div className="content">
-                                        <h2>{card.title}</h2>
-                                        <p>{card.description}</p>
-                                        {card.button && <button>{card.button.text}</button>}
+                                    <div className="card-content content">
+                                        <h2 className='title'>{card.title}</h2>
+                                        <p className='description'>{card.description}</p>
+                                        {card.button && <button className='btn'>{card.button.text}</button>}
                                     </div>
                                 </div>
 

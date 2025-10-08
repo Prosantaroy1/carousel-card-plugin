@@ -12,6 +12,11 @@
   padding: 10px;
   box-sizing: border-box;
 }
+.wp-block-ccd-carousel-card .react-multiple-carousel__arrow {
+  background: #111211;
+  min-width: 48px;
+  min-height: 48px;
+}
 .wp-block-ccd-carousel-card .carousel-card-wrapper .themeOne {
   /* Responsive */
 }
