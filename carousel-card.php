@@ -27,32 +27,169 @@ if (!class_exists('PREFIXPlugin')) {
 		function __construct()
 		{
 			add_action('init', [$this, 'onInit']);
-			add_action('enqueue_block_assets', [$this, 'my_block_enqueue_scripts']);
+			//add_action('enqueue_block_assets', [$this, 'my_block_enqueue_scripts']);
+			add_shortcode('carousel_card', [$this, 'carousel_card_shortcode']);
+			add_filter('manage_carousel_card_posts_columns', [$this, 'cc_setCustomColumn_edit']);
+			add_action('manage_carousel_card_posts_custom_column', [$this, 'cc_manageCustomColumn'], 10, 2);
+			add_action('admin_enqueue_scripts', [$this, 'cc_admin_enqueue_script']);
+
 		}
 
 		function onInit()
 		{
 			register_block_type(__DIR__ . '/build');
+			//--CPT add (1)--
+			register_post_type('carousel_card', [
+				'label' => 'carousel_card',
+				'description' => 'this is carousel_card and seo friendly card',
+				'labels' => [
+					'name' => __('carousel_card', 'service-card'),
+					'singular_name' => __('carousel_card', 'service-card'),
+					'add_new' => __('Add New', 'carousel_card'),
+					'add_new_item' => __('Add New carousel_card', 'service-card'),
+					'edit_item' => __('Edit carousel_card', 'service-card'),
+					'new_item' => __('New carousel_card', 'service-card'),
+					'view_item' => __('View carousel_card', 'service-card'),
+					'view_items' => __('View carousel_card', 'service-card'),
+					'search_items' => __('Search carousel_card', 'service-card'),
+					'not_found' => __('No carousel_card found.', 'service-card'),
+					'not_found_in_trash' => __('No carousel_card found in Trash.', 'service-card'),
+					'parent_item_colon' => __('Parent carousel_card:', 'service-card'),
+					'all_items' => __('All carousel_card', 'service-card'),
+					'archives' => __('carousel_card Archives', 'service-card'),
+					'attributes' => __('carousel_card Attributes', 'service-card'),
+					'insert_into_item' => __('Insert into carousel_card', 'service-card'),
+					'uploaded_to_this_item' => __('Uploaded to this carousel_card', 'service-card'),
+					'featured_image' => __('Featured Image', 'service-card'),
+					'set_featured_image' => __('Set featured image', 'service-card'),
+					'remove_featured_image' => __('Remove featured image', 'service-card'),
+					'use_featured_image' => __('Use as featured image', 'service-card'),
+					'menu_name' => __('Carousel Card', 'service-card'),
+					'filter_items_list' => __('Filter carousel_card list', 'service-card'),
+					'filter_by_date' => __('Filter by date', 'service-card'),
+					'items_list_navigation' => __('carousel_card list navigation', 'service-card'),
+					'items_list' => __('carousel_card list', 'service-card'),
+					'item_published' => __('carousel_card published.', 'service-card'),
+					'item_published_privately' => __('carousel_card published privately.', 'service-card'),
+					'item_reverted_to_draft' => __('carousel_card reverted to draft.', 'service-card'),
+					'item_scheduled' => __('carousel_card scheduled.', 'service-card'),
+					'item_updated' => __('carousel_card updated.', 'service-card'),
+					'item_link' => __('carousel_card Link', 'service-card'),
+					'item_link_description' => __('A link to an carousel_card.', 'service-card'),
+				],
+				'public' => true,
+				"publicly_queryable" => false,
+				'show_ui' => true,
+				'show_in_menu' => true,
+				'show_in_rest' => true,
+				'menu_position' => 79,
+				'menu_icon' => 'dashicons-index-card',
+				'supports' => array('title', 'editor', 'revisions'),
+				'template' => [['ccd/carousel-card']],
+				// 'template_lock' => 'all', //lock
+
+			]);
+
 
 		}
 
-		function my_block_enqueue_scripts()
+		//---column add or manage (2)---
+		function cc_setCustomColumn_edit($column)
 		{
-			wp_enqueue_script(
-				'react-multi-carousel',
-				'https://cdn.jsdelivr.net/npm/react-multi-carousel@2.9.6/dist/react-multi-carousel.min.js',
-				['wp-element'],
-				'2.9.6',
-				true
-			);
-
-			wp_enqueue_style(
-				'react-multi-carousel-css',
-				'https://cdn.jsdelivr.net/npm/react-multi-carousel@2.9.6/lib/styles.css',
-				[],
-				'2.9.6'
-			);
+			unset($column['date']);
+			$column['shortcode'] = 'ShortCode';
+			$column['date'] = 'Date';
+			$column['publisher'] = 'Publisher';
+			return $column;
 		}
+		function cc_manageCustomColumn($column_name, $post_id)
+		{
+
+			if ($column_name == 'shortcode') {
+				echo '<div class="bPlAdminShortcode" id="bPlAdminShortcode-' . esc_attr($post_id) . '">
+						<input value="[carousel_card id=' . esc_attr($post_id) . ']" onclick="copyBPlAdminShortcode(\'' . esc_attr($post_id) . '\')" readonly>
+						<span class="tooltip">Copy To Clipboard</span>
+					  </div>';
+			}
+			if ($column_name == 'publisher') {
+				echo 'Prosanta Roy';
+			}
+		}
+		//--shortcode or copy content and enqueue (3)--
+		function carousel_card_shortcode($atts)
+		{
+			$post_id = $atts['id'];
+			$post = get_post($post_id);
+
+			if (!$post) {
+				return '';
+			}
+
+			if (post_password_required($post)) {
+				return get_the_password_form($post);
+			}
+
+			switch ($post->post_status) {
+				case 'publish':
+					return $this->displayContent($post);
+
+				case 'private':
+					if (current_user_can('read_private_posts')) {
+						return $this->displayContent($post);
+					}
+					return '';
+
+				case 'draft':
+				case 'pending':
+				case 'future':
+					if (current_user_can('edit_post', $post_id)) {
+						return $this->displayContent($post);
+					}
+					return '';
+
+				default:
+					return '';
+			}
+		}
+		function displayContent($post)
+		{
+			$blocks = parse_blocks($post->post_content);
+			return render_block($blocks[0]);
+		}
+		function cc_admin_enqueue_script()
+		{
+			global $typenow;
+
+			if ('carousel_card' === $typenow) {
+				wp_enqueue_script('shortcode-js', CCD_DIR_URL . './build/shortcode.js', [], CCD_VERSION, true);
+				wp_enqueue_style(
+					'shortcode-css',
+					CCD_DIR_URL . './build/shortcode.css',
+					[],
+					CCD_VERSION
+				);
+			}
+		}
+
+
+
+		// function my_block_enqueue_scripts()
+		// {
+		// 	wp_enqueue_script(
+		// 		'react-multi-carousel',
+		// 		'https://cdn.jsdelivr.net/npm/react-multi-carousel@2.9.6/dist/react-multi-carousel.min.js',
+		// 		['wp-element'],
+		// 		'2.9.6',
+		// 		true
+		// 	);
+
+		// 	wp_enqueue_style(
+		// 		'react-multi-carousel-css',
+		// 		'https://cdn.jsdelivr.net/npm/react-multi-carousel@2.9.6/lib/styles.css',
+		// 		[],
+		// 		'2.9.6'
+		// 	);
+		// }
 
 	}
 	new PREFIXPlugin();
