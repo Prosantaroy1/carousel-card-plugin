@@ -3,10 +3,11 @@ import Settings from "./Settings/Settings";
 import Style from "../Common/Style";
 import { withSelect } from "@wordpress/data";
 import { ThemeSwitch } from '../Common/Themes/ThemeSwitch';
+import ClipBoard from '../../shortcode/ClipBoard';
 
 
 const Edit = (props) => {
-  const { attributes, setAttributes, clientId, device } = props;
+  const { attributes, setAttributes, clientId, device, postId, postType } = props;
 
   return (
     <>
@@ -16,6 +17,9 @@ const Edit = (props) => {
         <Style attributes={attributes} id={`block-${clientId}`} device={device} />
 
         <div className='carousel-card-wrapper'>
+          {postType == "carousel_card" && (
+            <ClipBoard shortcode={`[carousel_card id=${postId}]`} />
+          )}
           <ThemeSwitch {...{ attributes, setAttributes }} />
         </div>
 
@@ -26,9 +30,12 @@ const Edit = (props) => {
 // export default Edit;
 
 export default withSelect((select) => {
-  const { getDeviceType } = select("core/editor");
-  return {
+  const { getDeviceType, getCurrentPostId, getCurrentPostType } =
+    select("core/editor");
 
-    device: getDeviceType()?.toLowerCase(),
+  return {
+    device: getDeviceType ? getDeviceType()?.toLowerCase() : "desktop",
+    postType: getCurrentPostType(),
+    postId: getCurrentPostId(),
   };
 })(Edit);

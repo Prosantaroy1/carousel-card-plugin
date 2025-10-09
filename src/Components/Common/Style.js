@@ -13,7 +13,7 @@ const Style = ({ attributes, id, device }) => {
 	const carouselSectionSl = `${sectionWrapper} .carousel-card-section`
 	const cardRowSl = `${carouselSectionSl} .card-row`
 	const cardSl = `${cardRowSl} .card`
-	const imageSl = `${cardSl} .card-image`
+	//const imageSl = `${cardSl} .card-image`
 	const cardContentSl = `${cardSl} .card-content`
 	const TitleSl = `${cardContentSl} .title`
 	const DescriptionSl = `${cardContentSl} .description`
