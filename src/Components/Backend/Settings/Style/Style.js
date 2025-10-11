@@ -2,14 +2,14 @@ import { __ } from '@wordpress/i18n';
 import { PanelBody, PanelRow, RangeControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 import { Background, BoxControl, ColorsControl, Device, Label, Typography } from '../../../../../../bpl-tools/Components';
 import { updateData } from '../../../../utils/functions';
+import { BControlPro } from '../../../../../../bpl-tools/ProControls';
 
-const Style = ({ attributes, setAttributes, device }) => {
+const Style = ({ attributes, setAttributes, device, premiumProps }) => {
 
   const { Styles = {}, column } = attributes || {};
   const { cardBody } = Styles;
   const { title, description, button } = cardBody;
 
-  console.log(Styles?.card?.height)
 
   return (
     <>
@@ -59,6 +59,15 @@ const Style = ({ attributes, setAttributes, device }) => {
           onChange={(v) => setAttributes({
             Styles: updateData(Styles, v, 'cardBody', 'title', 'colors')
           })}
+        />
+        <BControlPro
+          label='Color'
+          value={title?.colors}
+          onChange={(v) => setAttributes({
+            Styles: updateData(Styles, v, 'cardBody', 'title', 'colors')
+          })}
+          Component={ColorsControl}
+          {...premiumProps}
         />
         <PanelRow><Label>Padding</Label> <Device /> </PanelRow>
         <BoxControl
@@ -113,6 +122,18 @@ const Style = ({ attributes, setAttributes, device }) => {
             Styles: updateData(Styles, v, 'cardBody', 'button', 'padding', device)
           })}
         />
+        {/* {
+          isPremium && <PanelRow><Label className=''>Padding</Label> <Device /> </PanelRow>
+        }
+        <BControlPro
+          label={isPremium ? '' : 'Padding'}
+          values={cardBody?.button?.padding?.[device]}
+          onChange={(v) => setAttributes({
+            Styles: updateData(Styles, v, 'cardBody', 'button', 'padding', device)
+          })}
+          Component={BoxControl}
+          {...premiumProps}
+        /> */}
       </PanelBody>
     </>
   )

@@ -34,7 +34,7 @@ const App = (props) => {
 
                     <Route path="welcome" element={<Welcome {...props} />} />
 
-                    <Route
+                    {!isPremium && <Route
                         path="demos"
                         element={
                             <ListDemos demoInfo={demoInfo} {...props}>
@@ -51,7 +51,7 @@ const App = (props) => {
                             </ListDemos>
                         }
                     />
-
+                    }
                     {/* {!isPremium && (
                         <Route
                             path="pricing"

@@ -25,9 +25,9 @@ export const dashboardInfo = (info) => {
             pricing: `https://bplugins.com/products/${slug}/pricing`,
         },
         freemius: {
-            product_id: 20854,
-            plan_id: 34829,
-            public_key: "pk_845c19fabdc20ef5233116f937b0e",
+            product_id: 21086,
+            plan_id: 35183,
+            public_key: "pk_7409dca5099207c685fdf146edf18",
         },
     };
 };

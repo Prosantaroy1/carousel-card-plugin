@@ -9,9 +9,15 @@ import ClipBoard from '../../shortcode/ClipBoard';
 const Edit = (props) => {
   const { attributes, setAttributes, clientId, device, postId, postType } = props;
 
+
+  const isPremium = ccdIsPipeChecker;
+  console.log(isPremium, " hello");
+
+
+
   return (
     <>
-      <Settings {...{ attributes, setAttributes }} device={device} />
+      <Settings {...{ attributes, setAttributes }} device={device} isPremium={isPremium} />
 
       <div {...useBlockProps()}>
         <Style attributes={attributes} id={`block-${clientId}`} device={device} />

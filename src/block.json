@@ -225,7 +225,9 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:./index.js",
+	"editorScript": [
+		"file:./index.js"
+	],
 	"editorStyle": "file:./index.css",
 	"style": "file:./view.css",
 	"render": "file:./render.php",
