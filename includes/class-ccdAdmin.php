@@ -1,17 +1,18 @@
 <?php
 
 if (!class_exists('CCDAdmin')) {
-    class CCDAdmin {
-        public function __construct() {
-			if(ccdIsPremium()) {
-				add_action('init', [$this, 'ccdRegisterPostType']);
-			}
-            add_action('admin_menu', [$this, "ccdAdminSubmenu"]);
-            add_filter('manage_carousel_card_posts_columns', [$this, 'ccd_setCustomColumn_edit']);
+	class CCDAdmin
+	{
+		public function __construct()
+		{
+			add_action('init', [$this, 'ccdRegisterPostType']);
+			add_action('admin_menu', [$this, "ccdAdminSubmenu"]);
+			add_filter('manage_carousel_card_posts_columns', [$this, 'ccd_setCustomColumn_edit']);
 			add_action('manage_carousel_card_posts_custom_column', [$this, 'ccd_manageCustomColumn'], 10, 2);
-        }
-        public function  ccdRegisterPostType() {
-            register_post_type('carousel_card', [
+		}
+		public function ccdRegisterPostType()
+		{
+			register_post_type('carousel_card', [
 				'label' => 'carousel_card',
 				'description' => 'this is carousel_card and seo friendly card',
 				'labels' => [
@@ -60,22 +61,23 @@ if (!class_exists('CCDAdmin')) {
 				'template' => [['ccd/carousel-card']],
 				// 'template_lock' => 'all', //lock
 			]);
-        }
+		}
 
-        public function ccdAdminSubmenu() {
-			$parent_slug = 'tools.php';
-			
-            add_submenu_page(
-				ccdIsPremium() ? 'edit.php?post_type=carousel_card' : 'tools.php',
+		public function ccdAdminSubmenu()
+		{
+
+			add_submenu_page(
+				'edit.php?post_type=carousel_card',
 				'Get Helper',
 				'Get Helper',
 				'manage_options',
 				'carousel_card_Dashboard',
 				[$this, 'cc_carousel_card_Dashboard_page']
 			);
-        }
+		}
 
-        public function cc_carousel_card_Dashboard_page() {
+		public function cc_carousel_card_Dashboard_page()
+		{
 			?>
 			<div id='vgbDashboard' data-info='<?php echo esc_attr(wp_json_encode([
 				'version' => CCD_VERSION,
@@ -84,16 +86,18 @@ if (!class_exists('CCDAdmin')) {
 			<?php
 		}
 
-        public function ccd_setCustomColumn_edit($column) {
-            unset($column['date']);
+		public function ccd_setCustomColumn_edit($column)
+		{
+			unset($column['date']);
 			$column['shortcode'] = 'ShortCode';
 			$column['date'] = 'Date';
 			$column['publisher'] = 'Publisher';
 			return $column;
-        }
+		}
 
-        public function ccd_manageCustomColumn($column_name, $post_id) {
-            if ($column_name == 'shortcode') {
+		public function ccd_manageCustomColumn($column_name, $post_id)
+		{
+			if ($column_name == 'shortcode') {
 				echo '<div class="bPlAdminShortcode" id="bPlAdminShortcode-' . esc_attr($post_id) . '">
 						<input value="[carousel_card id=' . esc_attr($post_id) . ']" onclick="copyBPlAdminShortcode(\'' . esc_attr($post_id) . '\')" readonly>
 						<span class="tooltip">Copy To Clipboard</span>
@@ -102,10 +106,10 @@ if (!class_exists('CCDAdmin')) {
 			if ($column_name == 'publisher') {
 				echo 'Prosanta Roy';
 			}
-        }
-    }
+		}
+	}
 
-    new CCDAdmin();
+	new CCDAdmin();
 }
 
 

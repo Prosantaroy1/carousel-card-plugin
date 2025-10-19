@@ -11,7 +11,6 @@ const Edit = (props) => {
 
 
   const isPremium = ccdIsPipeChecker;
-  console.log(isPremium, " hello");
 
 
 
